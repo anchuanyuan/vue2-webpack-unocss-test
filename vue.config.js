@@ -15,4 +15,16 @@ module.exports = {
           UnoCSS({}),
         ],
       },
+      chainWebpack(config) {
+        /* config.module.rule('vue').uses.delete('cache-loader')
+        config.merge({
+          cache: false,
+        }) */
+        config.when(process.env.ENV !== 'development', (config) => {
+          config.module.rule('vue').uses.delete('cache-loader')
+          config.merge({
+            cache: false,
+          })
+        })
+      },
 }
